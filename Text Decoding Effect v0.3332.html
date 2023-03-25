@@ -1,0 +1,196 @@
+<html>
+	<head>
+		<title>Text Decoding Effect by B3x2023</title>
+		<style>
+			body {
+    background-color: #141414;
+    color: #fff000;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+}
+
+.nav_bar{
+    text-align: center;
+    margin: 5%;
+}
+
+input{
+    accent-color: #0f0;
+    border: 1px solid lime;
+    background-color: #000;
+    color: lime;
+    width: 50%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+textarea {
+    text-align: center;
+    accent-color: #0f0;
+    border: 1px solid #0f0;
+    background-color: #000;
+    color: lime;
+    width: 50%;
+    height: 10%;
+    min-height: 50px;
+    max-height: 75px;
+    max-width: 50%;
+    min-width: 50%;
+    border-radius: 5px;
+}
+
+h1{
+    color: lime;
+}
+
+button{
+    border: 1px solid lime;
+    color: lime;
+    background-color: #000;
+    border-radius: 5px;
+}
+		</style>
+		<script>
+			var gluedsentence = '';
+			var list_of_frames = [];
+			var lineio = 0;
+	
+
+			function shuffle2(a){
+				//if(!classof(list)) return -1;
+				var alen = a.length;
+				var i = 0;
+				var temp;
+				while( i < alen ){
+					var c = Math.floor(Math.random() * alen);
+					temp = a[c];
+					a[c] = a[i];
+					a[i] = temp;
+					i++;
+				}
+				return a;
+			}
+			
+			function randomsamplejs(chrset,k){
+				var rcs = shuffle2(chrset.split(""));
+				var rcss = [];
+				rcss = rcs.slice(0,k);
+				return rcss.join("");
+			}
+			//MAR232023 prototype function
+			function non_repeating_chars(text1,text2){
+				text2 = text2.split("");
+				for(var i = 0; i < text1.length; i++){
+					for(var j = 0; j < text2.length; j++){
+						if(text1[i] == text2[j]) text2[j] = ""
+					}
+				}
+				return text2.join("");
+
+			}
+			
+			//MAR252023 prototype function anything_else_but_given_char
+			function anything_else_but_given_char(letter,chrset){
+				chrset = chrset.split("");
+				for(var i = 0 ; i < chrset.length; i++)
+				if(letter == chrset[i]) chrset[i] = ""
+				return chrset.join("");
+			}
+
+			function NOV242022f(chrset, inpsen,x,y,lr = 0,rl = 0,up = 1, aebgc = 1){
+				var sentence = "";
+				if(up) charset = non_repeating_chars(inpsen,chrset);
+				for(var i = 0; i < inpsen.length; i++){
+					//var chrset2 = chrset;
+					//var chrset3 = "";
+					//if(aebgc) chrset3 = anything_else_but_given_char(inpsen[i],chrset2)
+					sentence = rl ? inpsen[inpsen.length - 1 - i] + sentence : sentence + inpsen[i];
+					for(var j = 0; j < x; j++){
+						var k = inpsen.length - sentence.length;
+						var l = randomsamplejs(chrset,k);
+						gluedSentence = lr ? l + sentence : sentence + l;
+						list_of_frames.push(gluedSentence);
+					}
+				}
+			}
+			
+			function getSTART(){
+				var cs = document.getElementById('NOV242022ta1').value;
+				var tx = document.getElementById('NOV242022ta2').value;
+				var fr = document.getElementById('NOV242022inn1').value;
+				var ms = document.getElementById('NOV242022inn2').value;
+				var lr = document.getElementById('MAR232023cb1').checked;
+				var rl = document.getElementById('MAR232023cb2').checked;
+				var up = document.getElementById('MAR232023cb3').checked;
+				//var aebgc = document.getElementById('MAR232023cb4').checked;
+				NOV242022f(cs,tx,fr,ms,lr,rl,up);//,aebgc);
+			}
+			function textclear2(){
+			if(lineio == list_of_frames.length) return;
+			document.getElementById('NOV242022p').innerHTML = list_of_frames[lineio++];
+			if(lineio < list_of_frames.length){setTimeout("textclear2()",Number(document.getElementById('NOV242022inn2').value));}
+			}
+
+			function MAR232023f(){
+				document.getElementById('NOV242022p').style.fontFamily = document.getElementById('MAR012023inp').value
+			}
+			//MAR 25 2023
+			//anything but right now char(small+)
+			//this is getting confusing for little
+			//stop start button clear button document.write
+			//scalable design for mobile use
+			//MAR 24 2023 anything but current char...
+			//
+			//MAR 23 2023 think about it and make conversion right
+			//did it
+			//p instead pre use conversion \n to <br>
+			//and &Tab; instead \t
+			//calculate speed and frames for given text
+			//put spaces where they belong _add option (22 MAR 2023)
+			//HTML5 tables navigation content
+			//structure design
+			//nonrepeating chars _add option++
+			//add 2 tables cols for bgclr and clr
+			//Make separate space for text decoding effect
+			//release hatch button until some time passed
+			//enable if hatch failed
+			//right to left text decoding effect _option++
+			//center to both sides text decoding effect _option
+			//random text side decoding _option
+			//experimental "lr" option works nice++
+			//labels
+			//cant type anything other than numbers in number input box _optional
+			</script>
+	</head>
+	<body>
+		<div class="nav_bar">			
+			Frames<br>
+			<input type="number" id="NOV242022inn1" min="1" value="4"><br><br>
+			Miliseconds<br>
+			<input type="number" id="NOV242022inn2" min="1" value="50"><br><br>
+			Background Color<br>
+			<input type="color" id="FEB282023cool2" oninput="document.body.style.backgroundColor = document.getElementById('FEB282023cool2').value"><br><br>
+			Color<br>
+			<input type="color" id="FEB282023cool" value="#ffff00" oninput="document.getElementById('NOV242022p').style.color = document.getElementById('FEB282023cool').value"><br><br>
+			Font<br>
+			<input type="text" id="MAR012023inp" value="Times New Roman, monospace, sans-serif" oninput="MAR232023f()"><br><br>
+			Size<br>
+			<input type="number" id="MAR012023inp2" value="12" oninput="document.getElementById('NOV242022p').style.fontSize = document.getElementById('MAR012023inp2').value"><br><br>
+			Character Set<br>
+			<textarea id="NOV242022ta1">ABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890'!?*=()/&%$#"!</textarea><br><br>
+			Text<br>
+			<textarea id="NOV242022ta2">I'VE BEEN WAITING FOR THIS!</textarea><br><br>
+			Options<br>
+			LR<br><input type="checkbox" id="MAR232023cb1"><br>
+			RL<br><input type="checkbox" id="MAR232023cb2"><br>
+			Repeating chars<br><input type="checkbox" id="MAR232023cb3"><br>
+			<!--Anything but current char<br><input type="checkbox" id="MAR232023cb4"><br--><br>
+			<button onclick="lineio = 0; list_of_frames = []; getSTART(); textclear2()">Start Magic!</button><br><br>
+			<pre id="NOV242022p"></pre>
+			<!--button onclick="document.getElementById('NOV242022p').style.textAlign = 'left'">LEFT</button>
+			<button onclick="document.getElementById('NOV242022p').style.textAlign = 'center'">CENTER</button>
+			<button onclick="document.getElementById('NOV242022p').style.textAlign = 'right'">RIGHT</button-->
+		</div>
+	</body>
+</html>
