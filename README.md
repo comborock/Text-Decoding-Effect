@@ -14,3 +14,4 @@ I tried to incorporate as many options I could.
 Design is basic with some off things.
 Basically, putting this on GITHUB is my saying of I quit to work on this alone. Or is it?
 Wish I knew what am I looking for.
+http://blog.mega-man.org
